@@ -1,0 +1,48 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/main_activity"
+    android:gravity="center"
+    android:paddingLeft="650dp"
+    android:paddingTop="15dp"
+     >
+
+    <RelativeLayout
+        android:layout_width="400dp"
+        android:layout_height="280dp" >
+
+        <ImageView
+            android:id="@+id/iv_evaluate"
+            android:layout_width="200dp"
+            android:layout_height="140dp"
+            android:clickable="true"
+            android:src="@drawable/logo_evaluate" />
+
+        <ImageView
+            android:id="@+id/iv_history"
+            android:layout_width="200dp"
+            android:layout_height="140dp"
+            android:clickable="true"
+            android:layout_toRightOf="@id/iv_evaluate"
+            android:src="@drawable/logo_history" />
+
+        <ImageView
+            android:id="@+id/iv_information"
+            android:layout_width="200dp"
+            android:layout_height="140dp"
+            android:clickable="true"
+            android:layout_below="@id/iv_evaluate"
+            android:src="@drawable/logo_information" />
+
+        <ImageView
+            android:id="@+id/iv_management"
+            android:layout_width="200dp"
+            android:layout_height="140dp"
+            android:clickable="true"
+            android:layout_below="@+id/iv_evaluate"
+            android:layout_toRightOf="@+id/iv_evaluate"
+            android:src="@drawable/logo_management" />
+    </RelativeLayout>
+    
+</RelativeLayout>
