@@ -16,14 +16,16 @@ import android.widget.ImageView;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
+import com.sinodata.evaluate.BaseActivity;
 import com.sinodata.evaluate.MyApplication;
 import com.sinodata.evaluate.R;
-import com.sinodata.evaluate.BaseActivity;
+import com.sinodata.evaluate.utils.LicenseManager;
 
 public class ManagementActivity extends BaseActivity {
 
 	private ImageView iv_management_back;
 	private GridView gridView;
+	private LicenseManager lm;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -39,9 +41,18 @@ public class ManagementActivity extends BaseActivity {
 	public void initView(){
 		iv_management_back = (ImageView) findViewById(R.id.iv_management_back1);
 		gridView = (GridView) findViewById(R.id.gridview); 
+		lm = new LicenseManager();
 	}
 	public void initEvent(){
 		
+		iv_management_back.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				finish();
+			}
+		});
 		 //生成动态数组，并且转入数据  
 	      ArrayList<HashMap<String, Object>> lstImageItem = new ArrayList<HashMap<String, Object>>();  
 	      String[] str = {"搜索附近WIFI","一键关机","用户注销","用户信息查询"};
@@ -107,6 +118,7 @@ public class ManagementActivity extends BaseActivity {
 				
 					break;
 				case "用户注销":
+					lm.saveLicense("");
 					MyApplication.exit();
 					break;
 				case "用户信息查询":

@@ -12,6 +12,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 import com.sinodata.evaluate.R;
@@ -98,17 +99,19 @@ public class UserInformationRegisterActivity extends BaseActivity {
 						
 						new AsyncHttpClient(){
 							
-						}.get(MyApplication.getContext(), url, params, new JsonHttpResponseHandler(){
-							@Override
-							public void onFailure(Throwable e,
-									JSONObject errorResponse) {
-								// TODO Auto-generated method stub
-								super.onFailure(e, errorResponse);
-							}
+						}.get(MyApplication.getContext(), url, params, new AsyncHttpResponseHandler(){
 							@Override
 							public void onSuccess(int statusCode, String content) {
 								// TODO Auto-generated method stub
 								super.onSuccess(statusCode, content);
+								
+							}
+							@Override
+							public void onFailure(Throwable error,
+									String content) {
+								// TODO Auto-generated method stub
+								super.onFailure(error, content);
+								
 							}
 						});
 //					   	 将User对象转换成一个json类型的字符串对象

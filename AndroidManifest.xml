@@ -23,7 +23,7 @@
         android:label="@string/app_name"
         android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen" >
         <activity
-            android:name="com.sinodata.evaluate.activities.PrepareActivity"
+            android:name="com.sinodata.evaluate.activities.SplashActivity"
             android:label="@string/app_name" 
             >
             <intent-filter>
@@ -32,6 +32,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="com.sinodata.evaluate.activities.PrepareActivity"></activity>
         <activity android:name="com.sinodata.evaluate.activities.UserEvaluateListActivity"></activity>
         <activity android:name="com.sinodata.evaluate.activities.ConstitutionInfo"></activity>
         <activity android:name="com.sinodata.evaluate.activities.UserInformationRegisterActivity"></activity>

@@ -29,6 +29,7 @@ import android.widget.Toast;
 import com.loopj.android.http.RequestParams;
 import com.sinodata.evaluate.BaseActivity;
 import com.sinodata.evaluate.R;
+import com.sinodata.evaluate.utils.LicenseManager;
 import com.sinodata.evaluate.utils.WifiConnectManager;
 
 public class PrepareActivity extends BaseActivity {
@@ -52,6 +53,7 @@ public class PrepareActivity extends BaseActivity {
 	private String testUrl = "http://123.57.49.66/Assessment/crypto?serviceType=MBS0000050";
 	private RequestParams params;
 	private SharedPreferences sp;
+	private LicenseManager lm;
 	
 	private Handler handler = new Handler() {
 
@@ -161,6 +163,7 @@ public class PrepareActivity extends BaseActivity {
 		setContentView(R.layout.prepare_view);
 		
 		initView();
+		//lm.checkLicense(this);
 		initEvent();
 	}
 
@@ -170,6 +173,7 @@ public class PrepareActivity extends BaseActivity {
 		sp = getSharedPreferences("config", MODE_PRIVATE);
 		wifiConnectManager = new WifiConnectManager(this);
 		params = new RequestParams();
+		lm = new LicenseManager();
 		tv_splash_updateinfo = (TextView) findViewById(R.id.tv_splash_updateinfo);
 		et_license = (EditText) findViewById(R.id.et_license);
 		btn_activition = (Button) findViewById(R.id.btn_activation);
@@ -208,7 +212,8 @@ public class PrepareActivity extends BaseActivity {
 //					}
 					
 //				});
-				if(et_license.getText().toString().equals("123")){
+				if(et_license.getText().toString() != ""){
+					lm.saveLicense(et_license.getText().toString());
 					Intent intent = new Intent(PrepareActivity.this,MainActivity.class);
 					startActivity(intent);
 				}else{
@@ -221,7 +226,7 @@ public class PrepareActivity extends BaseActivity {
 		
 	}
 
-	
+
 	
 	/**
 	 * 得到当前应用程序的版本号

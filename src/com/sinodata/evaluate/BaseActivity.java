@@ -43,7 +43,7 @@ public abstract class BaseActivity extends Activity{
 		AlertDialog dialog = builder.create();
 		
 		boolean iscon = WifiConnect.checkNetworkConnection(this);
-		if(getClass().getSimpleName().equals("WifiListActivity")){
+		if(getClass().getSimpleName().equals("WifiListActivity")||getClass().getSimpleName().equals("SplashActivity")){
 			if(dialog!=null){
 				dialog.dismiss();
 			}
