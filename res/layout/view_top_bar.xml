@@ -27,14 +27,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="@android:color/white" />
 
-    <ImageView 
-        android:id="@+id/iv_back"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/back_1"
-        android:layout_marginRight="10dp"
-        android:layout_centerInParent="true"
-        android:layout_toLeftOf="@+id/tgb_wifi_switch"/>
+    
     
     <ToggleButton
         android:id="@+id/tgb_wifi_switch"

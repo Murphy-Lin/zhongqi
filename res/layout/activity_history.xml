@@ -13,10 +13,64 @@
         android:layout_marginRight="15dp"
         android:src="@drawable/history_back" />
     
+    <TextView 
+   		    android:id="@+id/tv_history_search"
+   		    android:layout_width="wrap_content"
+   		    android:layout_height="wrap_content"
+   		    android:text="请选择对应用户继续进行查询"
+   		    android:layout_marginLeft="50dp"
+   		    android:layout_marginTop="120dp"
+   		    android:textSize="36sp"/>
+    
+    <LinearLayout 
+   		    android:id="@+id/ll_historysearch"
+   		    android:layout_width="match_parent"
+   		    android:layout_height="wrap_content"
+   		    android:layout_marginTop="15dp"
+   		    android:layout_below="@id/tv_history_search"
+   		    android:orientation="horizontal">
+   		    
+   		    <TextView 
+   		        android:layout_width="wrap_content"
+   		        android:layout_height="wrap_content"
+   		        android:text="姓名"
+   		        android:layout_marginLeft="50dp"
+   		        android:textSize="18sp"
+   		        />
+   		    
+   		    <EditText 
+   		        android:id="@+id/et_history_username"
+   		        android:layout_width="200dp"
+   		        android:layout_marginLeft="10dp"
+   		        android:layout_height="wrap_content"/>
+   		    
+   		    <TextView 
+   		        android:layout_width="wrap_content"
+   		        android:layout_height="wrap_content"
+   		        android:textSize="18sp"
+   		        android:layout_marginLeft="10dp"
+   		        android:text="身份证号"/>
+   		    
+   		    <EditText 
+   		        android:id="@+id/et_history_idcard"
+   		        android:layout_width="500dp"
+   		        android:layout_height="wrap_content"
+   		        android:layout_marginLeft="10dp"/>
+   		    
+   		    <Button 
+   		        android:id="@+id/btn_history_select"
+   		        android:layout_width="100dp"
+   		        android:layout_height="wrap_content"
+   		        android:layout_marginLeft="10dp"
+   		        android:textSize="18sp" 
+   		        android:text="查询"/>
+   		    
+   		</LinearLayout>
+    
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/iv_history_back"
+        android:layout_below="@id/ll_historysearch"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="70dp"
         android:gravity="center"

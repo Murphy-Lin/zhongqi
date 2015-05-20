@@ -118,7 +118,7 @@ public class ManagementActivity extends BaseActivity {
 				
 					break;
 				case "用户注销":
-					lm.saveLicense("");
+					lm.saveLicense("","","","");
 					MyApplication.exit();
 					break;
 				case "用户信息查询":

@@ -13,14 +13,68 @@
         	android:layout_marginRight="15dp"
    		    android:src="@drawable/evaluate_back"/>
    		
-   		 <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/iv_userevaluatelist_back"
-        android:layout_marginTop="18dp"
-        android:layout_marginBottom="60dp"
-        android:gravity="center"
-        android:orientation="vertical" >
+   		<TextView 
+   		    android:id="@+id/tv_search"
+   		    android:layout_width="wrap_content"
+   		    android:layout_height="wrap_content"
+   		    android:text="请选择对应用户继续进行辨识"
+   		    android:layout_marginLeft="50dp"
+   		    android:layout_marginTop="120dp"
+   		    android:textSize="36sp"/>
+   		
+   		<LinearLayout 
+   		    android:id="@+id/ll_userinfosearch"
+   		    android:layout_width="match_parent"
+   		    android:layout_height="wrap_content"
+   		    android:layout_marginTop="15dp"
+   		    android:layout_below="@id/tv_search"
+   		    android:orientation="horizontal">
+   		    
+   		    <TextView 
+   		        android:layout_width="wrap_content"
+   		        android:layout_height="wrap_content"
+   		        android:text="姓名"
+   		        android:layout_marginLeft="50dp"
+   		        android:textSize="18sp"
+   		        />
+   		    
+   		    <EditText 
+   		        android:id="@+id/et_search_username"
+   		        android:layout_width="200dp"
+   		        android:layout_marginLeft="10dp"
+   		        android:layout_height="wrap_content"/>
+   		    
+   		    <TextView 
+   		        android:layout_width="wrap_content"
+   		        android:layout_height="wrap_content"
+   		        android:textSize="18sp"
+   		        android:layout_marginLeft="10dp"
+   		        android:text="身份证号"/>
+   		    
+   		    <EditText 
+   		        android:id="@+id/et_search_idcard"
+   		        android:layout_width="500dp"
+   		        android:layout_height="wrap_content"
+   		        android:layout_marginLeft="10dp"/>
+   		    
+   		    <Button 
+   		        android:id="@+id/btn_search_select"
+   		        android:layout_width="100dp"
+   		        android:layout_height="wrap_content"
+   		        android:layout_marginLeft="10dp"
+   		        android:textSize="18sp" 
+   		        android:text="查询"/>
+   		    
+   		</LinearLayout>
+   		
+   		<LinearLayout
+	        android:layout_width="match_parent"
+	        android:layout_height="match_parent"
+	        android:layout_below="@id/ll_userinfosearch"
+	        android:layout_marginTop="18dp"
+	        android:layout_marginBottom="60dp"
+	        android:gravity="center"
+	        android:orientation="vertical" >
 
         <com.sinodata.evaluate.views.MyListView
             android:id="@+id/freelook_listview"

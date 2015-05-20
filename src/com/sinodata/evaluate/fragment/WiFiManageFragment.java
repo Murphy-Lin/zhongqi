@@ -1,4 +1,4 @@
-package com.sinodata.evaluate.activities;
+package com.sinodata.evaluate.fragment;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -11,32 +11,33 @@ import android.net.wifi.ScanResult;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
-import android.widget.ImageView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
+import com.sinodata.evaluate.MyApplication;
 import com.sinodata.evaluate.R;
-import com.sinodata.evaluate.BaseActivity;
 import com.sinodata.evaluate.adapters.MyListViewAdapter;
 import com.sinodata.evaluate.utils.WifiAdmin;
 import com.sinodata.evaluate.utils.WifiConnect;
 import com.sinodata.evaluate.views.MyListView;
+import com.sinodata.evaluate.views.MyListView.OnRefreshListener;
 import com.sinodata.evaluate.views.OnNetworkChangeListener;
 import com.sinodata.evaluate.views.WifiConnDialog;
 import com.sinodata.evaluate.views.WifiStatusDialog;
-import com.sinodata.evaluate.views.MyListView.OnRefreshListener;
 
-public class WifiListActivity extends BaseActivity {
-	protected static final String TAG = WifiListActivity.class.getSimpleName();
+public class WiFiManageFragment extends Fragment {
 
 	private static final int REFRESH_CONN = 100;
 
@@ -51,7 +52,7 @@ public class WifiListActivity extends BaseActivity {
 	// 显示列表
 	private MyListView listView;
 	private ToggleButton tgbWifiSwitch;
-	private ImageView iv_back;
+	//private ImageView iv_back;
 	private MyListViewAdapter mAdapter;
 
 	private OnNetworkChangeListener mOnNetworkChangeListener = new OnNetworkChangeListener() {
@@ -70,30 +71,34 @@ public class WifiListActivity extends BaseActivity {
 			mAdapter.notifyDataSetChanged();
 		}
 	};
-
-	protected void onCreate(android.os.Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_wifi_list);
-
+	
+	@Override
+	public View onCreateView(LayoutInflater inflater,
+			@Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		
+		View v = inflater.inflate(R.layout.activity_wifi_list, container, false);
 		initData();
-		initView();
+		tgbWifiSwitch = (ToggleButton) v.findViewById(R.id.tgb_wifi_switch);
+		listView = (MyListView) v.findViewById(R.id.freelook_listview);
 		initEvent();
 		setListener();
 		
 		refreshWifiStatusOnTime();
 
+		return v;
 	}
-
+	
 	private void initData() {
-		mWifiAdmin = new WifiAdmin(WifiListActivity.this);
-		mWifiManager = (WifiManager) this.getSystemService(Context.WIFI_SERVICE);
+		mWifiAdmin = new WifiAdmin(MyApplication.getContext());
+		mWifiManager = (WifiManager) MyApplication.getContext().getSystemService(Context.WIFI_SERVICE);
 		connInfo = mWifiManager.getConnectionInfo();
 		// 获得Wifi列表信息
 		getWifiListInfo();
 	}
 	
 	public void initEvent(){
-		mAdapter = new MyListViewAdapter(this, list);
+		mAdapter = new MyListViewAdapter(getActivity(), list);
 		listView.setAdapter(mAdapter);
 		int wifiState = mWifiAdmin.checkState();
 		if (wifiState == WifiManager.WIFI_STATE_DISABLED
@@ -104,21 +109,21 @@ public class WifiListActivity extends BaseActivity {
 			tgbWifiSwitch.setChecked(true);
 		}
 		
-		if(!WifiConnect.checkNetworkConnection(this)){
-			Toast.makeText(this, "您还未连接WIFI，请先连接！", Toast.LENGTH_LONG).show();
+		if(!WifiConnect.checkNetworkConnection(getActivity())){
+			Toast.makeText(getActivity(), "您还未连接WIFI，请先连接！", Toast.LENGTH_LONG).show();
 		}else if(mWifiAdmin.checkState() <3){
-			Toast.makeText(this, "您的网卡未开启，请按上面的开关先开启网卡！", Toast.LENGTH_LONG).show();
+			Toast.makeText(getActivity(), "您的网卡未开启，请按上面的开关先开启网卡！", Toast.LENGTH_LONG).show();
 		}else{
-			Toast.makeText(this, "已连接至"+connInfo.getSSID(), Toast.LENGTH_LONG).show();
+			Toast.makeText(getActivity(), "已连接至"+connInfo.getSSID(), Toast.LENGTH_LONG).show();
 		}
 		
-		iv_back.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				finish();
-			}
-		});
+//		iv_back.setOnClickListener(new OnClickListener() {
+//			
+//			@Override
+//			public void onClick(View v) {
+//				finish();
+//			}
+//		});
 		
 		// 设置刷新监听
 		listView.setonRefreshListener(new OnRefreshListener() {
@@ -150,8 +155,7 @@ public class WifiListActivity extends BaseActivity {
 
 	public void initView() {
 		//iv_back = (ImageView) findViewById(R.id.iv_back);
-		tgbWifiSwitch = (ToggleButton) findViewById(R.id.tgb_wifi_switch);
-		listView = (MyListView) findViewById(R.id.freelook_listview);
+		
 		
 		
 	}
@@ -167,14 +171,14 @@ public class WifiListActivity extends BaseActivity {
 			public void onCheckedChanged(CompoundButton buttonView,
 					boolean isChecked) {
 				if (isChecked) {
-					Log.w(TAG, "======== open wifi ========");
+					//Log.w(TAG, "======== open wifi ========");
 					// 打开Wifi
 					mWifiAdmin.openWifi();
 				} else {
-					Log.w(TAG, "======== close wifi ========");
+				//	Log.w(TAG, "======== close wifi ========");
 					// 关闭Wifi
 					boolean res = mWifiAdmin.closeWifi();
-					Toast.makeText(WifiListActivity.this, "您的网卡未开启，请按上面的开关先开启网卡！", Toast.LENGTH_LONG).show();
+					Toast.makeText(getActivity(), "您的网卡未开启，请按上面的开关先开启网卡！", Toast.LENGTH_LONG).show();
 					if (!res) {
 						gotoSysCloseWifi();
 					}
@@ -198,13 +202,13 @@ public class WifiListActivity extends BaseActivity {
 				if (mWifiAdmin.isConnect(scanResult)) {
 					// 已连接，显示连接状态对话框
 					WifiStatusDialog mStatusDialog = new WifiStatusDialog(
-							WifiListActivity.this, R.style.PopDialog,
+							getActivity(), R.style.PopDialog,
 							scanResult, mOnNetworkChangeListener);
 					mStatusDialog.show();
 				} else {
 					// 未连接显示连接输入对话框
 					WifiConnDialog mDialog = new WifiConnDialog(
-							WifiListActivity.this, R.style.PopDialog,
+							getActivity(), R.style.PopDialog,
 							scanResult, mOnNetworkChangeListener);
 					// WifiConnDialog mDialog = new WifiConnDialog(
 					// WifiListActivity.this, R.style.PopDialog, wifiName,
@@ -215,7 +219,7 @@ public class WifiListActivity extends BaseActivity {
 		});
 	}
 
-	private void getWifiListInfo() {
+	public void getWifiListInfo() {
 		System.out.println("WifiListActivity#getWifiListInfo");
 		mWifiAdmin.startScan();
 		List<ScanResult> tmpList = mWifiAdmin.getWifiList();
@@ -232,22 +236,22 @@ public class WifiListActivity extends BaseActivity {
 
 	private static class MyHandler extends Handler {
 
-		private WeakReference<WifiListActivity> reference;
+		private WeakReference<WiFiManageFragment> reference;
 
-		public MyHandler(WifiListActivity activity) {
-			this.reference = new WeakReference<WifiListActivity>(activity);
+		public MyHandler(WiFiManageFragment wififragment) {
+			this.reference = new WeakReference<WiFiManageFragment>(wififragment);
 		}
 
 		@Override
 		public void handleMessage(Message msg) {
 
-			WifiListActivity activity = reference.get();
+			WiFiManageFragment wififragment = reference.get();
 
 			switch (msg.what) {
 			case REFRESH_CONN:
-				activity.getWifiListInfo();
-				activity.mAdapter.setDatas(activity.list);
-				activity.mAdapter.notifyDataSetChanged();
+				wififragment.getWifiListInfo();
+				wififragment.mAdapter.setDatas(wififragment.list);
+				wififragment.mAdapter.notifyDataSetChanged();
 				break;
 
 			default:
@@ -270,7 +274,7 @@ public class WifiListActivity extends BaseActivity {
 				while (isUpdate) {
 					try {
 						Thread.sleep(1000);
-					} catch (InterruptedException e) {
+					} catch (Exception e) {
 						e.printStackTrace();
 					}
 					mHandler.sendEmptyMessage(REFRESH_CONN);
@@ -280,7 +284,7 @@ public class WifiListActivity extends BaseActivity {
 	}
 
 	@Override
-	protected void onDestroy() {
+	public void onDestroy() {
 		super.onDestroy();
 		isUpdate = false;
 	}
@@ -304,7 +308,7 @@ public class WifiListActivity extends BaseActivity {
 	}
 
 	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
 		switch (requestCode) {
 		case REQ_SET_WIFI:

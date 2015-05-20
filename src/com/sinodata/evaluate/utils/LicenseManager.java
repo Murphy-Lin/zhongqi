@@ -20,9 +20,12 @@ public class LicenseManager {
 		sp = context.getSharedPreferences("config", Context.MODE_PRIVATE);
 	}
 
-	public void saveLicense(String license){
+	public void saveLicense(String license, String company, String username,String deviceID){
 		Editor ed = sp.edit();
 		ed.putString("License", license);
+		ed.putString("Company", company);
+		ed.putString("Username", username);
+		ed.putString("DeviceID", deviceID);
 		ed.commit();
 	}
 	

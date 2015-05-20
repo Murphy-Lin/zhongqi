@@ -32,6 +32,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        
+        <activity android:name="com.sinodata.evaluate.activities.ManageActivity"></activity>
         <activity android:name="com.sinodata.evaluate.activities.PrepareActivity"></activity>
         <activity android:name="com.sinodata.evaluate.activities.UserEvaluateListActivity"></activity>
         <activity android:name="com.sinodata.evaluate.activities.ConstitutionInfo"></activity>

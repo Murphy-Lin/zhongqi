@@ -16,5 +16,13 @@
     <string name="search_wifi">搜索附近WIFI</string>
     <string name="conn_status">连接状态</string>
     <string name="ip_address">IP地址</string>
-
+	<string name="device_id">当前设备ID</string>
+	<string name="license">请录入激活码</string> 
+	<string name="company">使用者单位</string>
+	<string name="username">使用者名称</string>
+	<string name="protocol">请详细阅读下面使用者协议</string>
+	<string name="btn_register">同意并登陆</string>
+	<string name="btn_cancle">取消</string>
+	<string name="userinforegister">请在开始辨识前完善必要信息</string>
+	<string name="spe">请遵守以下法律法规方可使用</string>
 </resources>

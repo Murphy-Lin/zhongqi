@@ -1,7 +1,5 @@
 package com.sinodata.evaluate.activities;
 
-import org.json.JSONObject;
-
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -13,24 +11,22 @@ import android.widget.RadioGroup;
 
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
-import com.sinodata.evaluate.R;
 import com.sinodata.evaluate.BaseActivity;
 import com.sinodata.evaluate.MyApplication;
-import com.sinodata.evaluate.beans.User;
+import com.sinodata.evaluate.R;
 
 public class UserInformationRegisterActivity extends BaseActivity {
 
 	private ImageView iv_back;
-	private Button btn_register;
+	private Button btn_submit;
 	
 	private EditText et_username;
 	private EditText et_IDCard;
 	private EditText et_tel;
 	private EditText et_age;
 	private RadioGroup radioGroup;
-	private User user;
+	//private User user;
 	private String url = "";
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +34,7 @@ public class UserInformationRegisterActivity extends BaseActivity {
 		super.onCreate(savedInstanceState);
 		
 		setContentView(R.layout.userinformationregister);
-		user = new User();
+		//user = new User();
 		
 		initView();
 		initEvent();
@@ -48,11 +44,11 @@ public class UserInformationRegisterActivity extends BaseActivity {
 	public void initView() {
 		// TODO Auto-generated method stub
 		iv_back = (ImageView) findViewById(R.id.iv_register_back);
-		btn_register = (Button) findViewById(R.id.btn_register);
-		et_username = (EditText) findViewById(R.id.et_username);
-		et_IDCard = (EditText) findViewById(R.id.et_IDCard);
+		btn_submit = (Button) findViewById(R.id.btn_submit);
+		et_username = (EditText) findViewById(R.id.et_name);
+		et_IDCard = (EditText) findViewById(R.id.et_identity_card);
 		et_tel = (EditText) findViewById(R.id.et_tel);
-		et_age = (EditText) findViewById(R.id.et_age);
+		et_age = (EditText) findViewById(R.id.et_birth);
 		radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
 	}
 	
@@ -67,7 +63,7 @@ public class UserInformationRegisterActivity extends BaseActivity {
 				finish();
 			}
 		});
-		btn_register.setOnClickListener(new OnClickListener() {
+		btn_submit.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {

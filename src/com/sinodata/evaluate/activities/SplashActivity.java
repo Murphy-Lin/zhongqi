@@ -1,6 +1,5 @@
 package com.sinodata.evaluate.activities;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import com.sinodata.evaluate.BaseActivity;

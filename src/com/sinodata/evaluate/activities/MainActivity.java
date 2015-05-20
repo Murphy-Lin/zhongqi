@@ -74,7 +74,7 @@ public class MainActivity extends BaseActivity implements OnClickListener{
 			startActivity(intent);
 			break;
 		case R.id.iv_management:
-			intent = new Intent(this,ManagementActivity.class);
+			intent = new Intent(this,ManageActivity.class);
 			startActivity(intent);
 			break;
 			default:

@@ -6,6 +6,8 @@ import java.util.List;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.sinodata.evaluate.BaseActivity;
@@ -20,6 +22,11 @@ public class UserEvaluateListActivity extends BaseActivity {
 	private MyListView listView;
 	private List<String> list;
 	private UserEvaluateListAdapter mAdapter;
+	
+	private EditText et_username;
+	private EditText et_IDcard;
+	private Button btn_search;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -44,7 +51,9 @@ public class UserEvaluateListActivity extends BaseActivity {
 		iv_back = (ImageView) findViewById(R.id.iv_userevaluatelist_back);
 		listView = (MyListView) findViewById(R.id.freelook_listview);
 		mAdapter = new UserEvaluateListAdapter(this,list);
-		
+		et_username = (EditText) findViewById(R.id.et_search_username);
+		et_IDcard = (EditText) findViewById(R.id.et_search_idcard);
+		btn_search = (Button) findViewById(R.id.btn_search_select);
 	}
 
 	@Override

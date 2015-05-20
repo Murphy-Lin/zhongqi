@@ -1,18 +1,18 @@
 package com.sinodata.evaluate;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.view.Window;
 
-import com.sinodata.evaluate.activities.WifiListActivity;
+import com.sinodata.evaluate.activities.ManageActivity;
 import com.sinodata.evaluate.utils.WifiConnect;
 
-public abstract class BaseActivity extends Activity{
+public abstract class BaseActivity extends FragmentActivity{
 
 	public static final int FLAG_HOMEKEY_DISPATCHED = 0x80000000;
 	
@@ -33,17 +33,18 @@ public abstract class BaseActivity extends Activity{
 			public void onClick(DialogInterface dialog, int which) {
 				// TODO Auto-generated method stub
 				
-				Intent intent = new Intent(BaseActivity.this,WifiListActivity.class);
+				Intent intent = new Intent(BaseActivity.this,ManageActivity.class);
+				intent.setAction("wifi");
 				startActivity(intent);
 				dialog.dismiss();
-				
+				//finish();
 			}
-		});
+		}).setCancelable(false);
 		
 		AlertDialog dialog = builder.create();
 		
 		boolean iscon = WifiConnect.checkNetworkConnection(this);
-		if(getClass().getSimpleName().equals("WifiListActivity")||getClass().getSimpleName().equals("SplashActivity")){
+		if(getClass().getSimpleName().equals("ManageActivity")||getClass().getSimpleName().equals("SplashActivity")){
 			if(dialog!=null){
 				dialog.dismiss();
 			}
