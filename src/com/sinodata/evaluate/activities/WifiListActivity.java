@@ -42,13 +42,13 @@ public class WifiListActivity extends BaseActivity {
 
 	private static final int REQ_SET_WIFI = 200;
 
-	// Wifi¹ÜÀíÀà
+	// Wifiç®¡ç†ç±»
 	private WifiAdmin mWifiAdmin;
 	private WifiManager mWifiManager;
 	private WifiInfo connInfo;
-	// É¨Ãè½á¹ûÁĞ±í
+	// æ‰«æç»“æœåˆ—è¡¨
 	private List<ScanResult> list = new ArrayList<ScanResult>();
-	// ÏÔÊ¾ÁĞ±í
+	// æ˜¾ç¤ºåˆ—è¡¨
 	private MyListView listView;
 	private ToggleButton tgbWifiSwitch;
 	private ImageView iv_back;
@@ -88,7 +88,7 @@ public class WifiListActivity extends BaseActivity {
 		mWifiAdmin = new WifiAdmin(WifiListActivity.this);
 		mWifiManager = (WifiManager) this.getSystemService(Context.WIFI_SERVICE);
 		connInfo = mWifiManager.getConnectionInfo();
-		// »ñµÃWifiÁĞ±íĞÅÏ¢
+		// è·å¾—Wifiåˆ—è¡¨ä¿¡æ¯
 		getWifiListInfo();
 	}
 	
@@ -105,11 +105,11 @@ public class WifiListActivity extends BaseActivity {
 		}
 		
 		if(!WifiConnect.checkNetworkConnection(this)){
-			Toast.makeText(this, "Äú»¹Î´Á¬½ÓWIFI£¬ÇëÏÈÁ¬½Ó£¡", Toast.LENGTH_LONG).show();
+			Toast.makeText(this, "æ‚¨è¿˜æœªè¿æ¥WIFIï¼Œè¯·å…ˆè¿æ¥ï¼", Toast.LENGTH_LONG).show();
 		}else if(mWifiAdmin.checkState() <3){
-			Toast.makeText(this, "ÄúµÄÍø¿¨Î´¿ªÆô£¬Çë°´ÉÏÃæµÄ¿ª¹ØÏÈ¿ªÆôÍø¿¨£¡", Toast.LENGTH_LONG).show();
+			Toast.makeText(this, "æ‚¨çš„ç½‘å¡æœªå¼€å¯ï¼Œè¯·æŒ‰ä¸Šé¢çš„å¼€å…³å…ˆå¼€å¯ç½‘å¡ï¼", Toast.LENGTH_LONG).show();
 		}else{
-			Toast.makeText(this, "ÒÑÁ¬½ÓÖÁ"+connInfo.getSSID(), Toast.LENGTH_LONG).show();
+			Toast.makeText(this, "å·²è¿æ¥è‡³"+connInfo.getSSID(), Toast.LENGTH_LONG).show();
 		}
 		
 		iv_back.setOnClickListener(new OnClickListener() {
@@ -120,7 +120,7 @@ public class WifiListActivity extends BaseActivity {
 			}
 		});
 		
-		// ÉèÖÃË¢ĞÂ¼àÌı
+		// è®¾ç½®åˆ·æ–°ç›‘å¬
 		listView.setonRefreshListener(new OnRefreshListener() {
 			@Override
 			public void onRefresh() {
@@ -157,7 +157,7 @@ public class WifiListActivity extends BaseActivity {
 	}
 
 	/**
-	 * ¼àÌı¶¥²¿Íø¿¨¿ª¹Ø°´Å¥
+	 * ç›‘å¬é¡¶éƒ¨ç½‘å¡å¼€å…³æŒ‰é’®
 	 */
 	private void setListener() {
 
@@ -168,13 +168,13 @@ public class WifiListActivity extends BaseActivity {
 					boolean isChecked) {
 				if (isChecked) {
 					Log.w(TAG, "======== open wifi ========");
-					// ´ò¿ªWifi
+					// æ‰“å¼€Wifi
 					mWifiAdmin.openWifi();
 				} else {
 					Log.w(TAG, "======== close wifi ========");
-					// ¹Ø±ÕWifi
+					// å…³é—­Wifi
 					boolean res = mWifiAdmin.closeWifi();
-					Toast.makeText(WifiListActivity.this, "ÄúµÄÍø¿¨Î´¿ªÆô£¬Çë°´ÉÏÃæµÄ¿ª¹ØÏÈ¿ªÆôÍø¿¨£¡", Toast.LENGTH_LONG).show();
+					Toast.makeText(WifiListActivity.this, "æ‚¨çš„ç½‘å¡æœªå¼€å¯ï¼Œè¯·æŒ‰ä¸Šé¢çš„å¼€å…³å…ˆå¼€å¯ç½‘å¡ï¼", Toast.LENGTH_LONG).show();
 					if (!res) {
 						gotoSysCloseWifi();
 					}
@@ -196,13 +196,13 @@ public class WifiListActivity extends BaseActivity {
 				ScanResult scanResult = list.get(position);
 
 				if (mWifiAdmin.isConnect(scanResult)) {
-					// ÒÑÁ¬½Ó£¬ÏÔÊ¾Á¬½Ó×´Ì¬¶Ô»°¿ò
+					// å·²è¿æ¥ï¼Œæ˜¾ç¤ºè¿æ¥çŠ¶æ€å¯¹è¯æ¡†
 					WifiStatusDialog mStatusDialog = new WifiStatusDialog(
 							WifiListActivity.this, R.style.PopDialog,
 							scanResult, mOnNetworkChangeListener);
 					mStatusDialog.show();
 				} else {
-					// Î´Á¬½ÓÏÔÊ¾Á¬½ÓÊäÈë¶Ô»°¿ò
+					// æœªè¿æ¥æ˜¾ç¤ºè¿æ¥è¾“å…¥å¯¹è¯æ¡†
 					WifiConnDialog mDialog = new WifiConnDialog(
 							WifiListActivity.this, R.style.PopDialog,
 							scanResult, mOnNetworkChangeListener);
@@ -259,9 +259,9 @@ public class WifiListActivity extends BaseActivity {
 	}
 
 	/**
-	 * Function:¶¨Ê±Ë¢ĞÂWifiÁĞ±íĞÅÏ¢<br>
+	 * Function:å®šæ—¶åˆ·æ–°Wifiåˆ—è¡¨ä¿¡æ¯<br>
 	 * 
-	 * @author Murphy_Lin DateTime 2014-5-15 ÉÏÎç9:14:34<br>
+	 * @author Murphy_Lin DateTime 2014-5-15 ä¸Šåˆ9:14:34<br>
 	 * <br>
 	 */
 	private void refreshWifiStatusOnTime() {
@@ -286,9 +286,9 @@ public class WifiListActivity extends BaseActivity {
 	}
 
 	/**
-	 * Function:µ½ÏµÍ³ÖĞÉèÖÃwifi£¬Èç¹ûÓÃ»§ÊÖ¶¯¹Ø±ÕÊ§°Ü£¬Ìø×ªµ½ÏµÍ³ÖĞ½øĞĞ¹Ø±ÕWifi<br>
+	 * Function:åˆ°ç³»ç»Ÿä¸­è®¾ç½®wifiï¼Œå¦‚æœç”¨æˆ·æ‰‹åŠ¨å…³é—­å¤±è´¥ï¼Œè·³è½¬åˆ°ç³»ç»Ÿä¸­è¿›è¡Œå…³é—­Wifi<br>
 	 * 
-	 * @author Murphy_Lin DateTime 2014-5-15 ÉÏÎç10:03:15<br>
+	 * @author Murphy_Lin DateTime 2014-5-15 ä¸Šåˆ10:03:15<br>
 	 * <br>
 	 */
 	private void gotoSysCloseWifi() {
@@ -308,7 +308,7 @@ public class WifiListActivity extends BaseActivity {
 		super.onActivityResult(requestCode, resultCode, data);
 		switch (requestCode) {
 		case REQ_SET_WIFI:
-			// ´¦Àí¸Ä±äwifi×´Ì¬½á¹û
+			// å¤„ç†æ”¹å˜wifiçŠ¶æ€ç»“æœ
 			//
 			int wifiState = mWifiAdmin.checkState();
 			if (wifiState == WifiManager.WIFI_STATE_DISABLED

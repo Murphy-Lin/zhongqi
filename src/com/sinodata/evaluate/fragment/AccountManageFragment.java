@@ -10,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 import com.sinodata.evaluate.MyApplication;
@@ -25,7 +24,7 @@ public class AccountManageFragment extends Fragment implements OnClickListener{
 	private TextView tv_license;
 	private TextView tv_username;
 	private TextView tv_company;
-	private Button btn_logout;
+	//private Button btn_logout;
 	private LicenseManager lm;
 	private SharedPreferences sp;
 	private ManageActivity ma;
@@ -42,9 +41,9 @@ public class AccountManageFragment extends Fragment implements OnClickListener{
 		tv_license = (TextView) v.findViewById(R.id.tv_account_license);
 		tv_username = (TextView) v.findViewById(R.id.tv_account_username);
 		tv_company = (TextView) v.findViewById(R.id.tv_account_company);
-		btn_logout = (Button) v.findViewById(R.id.btn_fragment_logout);
+		//btn_logout = (Button) v.findViewById(R.id.btn_fragment_logout);
 		
-		btn_logout.setOnClickListener(this);
+		//btn_logout.setOnClickListener(this);
 		String company = sp.getString("Company", "");
 		tv_company.setText(company);
 		String username = sp.getString("Username", "");
@@ -59,7 +58,7 @@ public class AccountManageFragment extends Fragment implements OnClickListener{
 	@Override
 	public void onClick(View arg0) {
 		// TODO Auto-generated method stub
-		lm.saveLicense("", "", "", "");
+		lm.saveLicense("", "", "");
 		Intent in = new Intent(MyApplication.getContext(),PrepareActivity.class);
 		startActivity(in);
 		ma.finish();

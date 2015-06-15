@@ -26,11 +26,11 @@ import com.sinodata.evaluate.utils.WifiConnect.WifiCipherType;
 
 /**
  * Class Name: WifiConnDialog.java<br>
- * Function:WifiÁ¬½Ó¶Ô»°¿ò<br>
+ * Function:Wifiè¿æ¥å¯¹è¯æ¡†<br>
  * 
  * Modifications:<br>
  * 
- * @author Murphy_Lin DateTime 2014-5-14 ÏÂÎç2:23:37<br>
+ * @author Murphy_Lin DateTime 2014-5-14 ä¸‹åˆ2:23:37<br>
  * @version 1.0<br>
  * <br>
  */
@@ -118,17 +118,17 @@ public class WifiConnDialog extends Dialog {
 			public void onCheckedChanged(CompoundButton buttonView,
 					boolean isChecked) {
 				if (isChecked) {
-					// ÎÄ±¾Õı³£ÏÔÊ¾
+					// æ–‡æœ¬æ­£å¸¸æ˜¾ç¤º
 					edtPassword
 							.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
 					Editable etable = edtPassword.getText();
 					Selection.setSelection(etable, etable.length());
 
 				} else {
-					// ÎÄ±¾ÒÔÃÜÂëĞÎÊ½ÏÔÊ¾
+					// æ–‡æœ¬ä»¥å¯†ç å½¢å¼æ˜¾ç¤º
 					edtPassword.setInputType(InputType.TYPE_CLASS_TEXT
 							| InputType.TYPE_TEXT_VARIATION_PASSWORD);
-					// ÏÂÃæÁ½ĞĞ´úÂëÊµÏÖ: ÊäÈë¿ò¹â±êÒ»Ö±ÔÚÊäÈëÎÄ±¾ºóÃæ
+					// ä¸‹é¢ä¸¤è¡Œä»£ç å®ç°: è¾“å…¥æ¡†å…‰æ ‡ä¸€ç›´åœ¨è¾“å…¥æ–‡æœ¬åé¢
 					Editable etable = edtPassword.getText();
 					Selection.setSelection(etable, etable.length());
 
@@ -159,15 +159,15 @@ public class WifiConnDialog extends Dialog {
 					type = WifiCipherType.WIFICIPHER_NOPASS;
 				}
 
-				// Á¬½ÓÍøÂç
+				// è¿æ¥ç½‘ç»œ
 				WifiAdmin mWifiAdmin = new WifiAdmin(context);
 				boolean bRet = mWifiAdmin.connect(scanResult.SSID, edtPassword
 						.getText().toString().trim(), type);
 				if (bRet) {
-					showShortToast("Á¬½Ó³É¹¦");
+					showShortToast("è¿æ¥æˆåŠŸ");
 					onNetworkChangeListener.onNetWorkConnect();
 				} else {
-					showShortToast("Á¬½ÓÊ§°Ü");
+					showShortToast("è¿æ¥å¤±è´¥");
 					onNetworkChangeListener.onNetWorkConnect();
 				}
 				WifiConnDialog.this.dismiss();

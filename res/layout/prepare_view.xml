@@ -26,16 +26,7 @@
             android:layout_height="wrap_content"
             android:text="@string/license"
             android:maxLines="1"
-            android:layout_marginTop="18dp"
-            android:textSize="20sp"/>
-        
-        <TextView 
-            android:id="@+id/tv_company"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/company"
-            android:maxLines="1"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="15dp"
             android:textSize="20sp"/>
         
         <TextView 
@@ -44,7 +35,7 @@
             android:layout_height="wrap_content"
             android:text="@string/username"
             android:maxLines="1"
-            android:layout_marginTop="28dp"
+            android:layout_marginTop="26dp"
             android:textSize="20sp"/>
         
 	</LinearLayout>
@@ -61,25 +52,23 @@
             android:id="@+id/tv_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="abcdefghijklmnoqprstuvwxyz"
+            android:text=""
             android:textSize="18sp"/>
         
         <EditText 
             android:id="@+id/et_license"
             android:layout_width="500dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"/>
-        
-         <EditText 
-            android:id="@+id/et_company"
-            android:layout_width="500dp"
-            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:background="@android:drawable/edit_text"
             android:layout_marginTop="10dp"/>
          
           <EditText 
             android:id="@+id/et_username"
             android:layout_width="500dp"
             android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:background="@android:drawable/edit_text"
             android:layout_marginTop="10dp"/>
           
     </LinearLayout>
@@ -101,12 +90,18 @@
         
         <EditText
             android:id="@+id/et_protocol"
-            android:layout_width="630dp"
-            android:layout_height="152dp"
+            android:layout_width="645dp"
+            android:layout_height="wrap_content"
+            android:maxHeight="152dp"
             android:textSize="18sp"
+            android:background="@android:drawable/edit_text"
             android:layout_marginTop="15dp"
-            android:text="aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-            android:maxLines="9"
+            android:isScrollContainer="true"
+            android:scrollbars="vertical"
+            android:textColor="#000000"
+            android:windowSoftInputMode="stateHidden"
+            android:focusable="false"
+            android:inputType="none"
             />
         
     </LinearLayout>
@@ -118,6 +113,7 @@
         android:gravity="center"
         android:layout_marginTop="15dp"
         android:layout_below="@id/ll_register3"
+        android:layout_marginLeft="45dp"
         android:orientation="horizontal" >
 
         <Button

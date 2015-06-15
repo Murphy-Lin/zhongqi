@@ -27,7 +27,7 @@ public abstract class BaseActivity extends FragmentActivity{
 		
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		
-		builder.setTitle("您还未连接WIFI，请先连接！").setPositiveButton("去搜搜附近的WIFI", new OnClickListener() {
+		builder.setTitle("鎮ㄨ繕鏈繛鎺IFI锛岃鍏堣繛鎺ワ紒").setPositiveButton("鍘绘悳鎼滈檮杩戠殑WIFI", new OnClickListener() {
 			
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
@@ -52,13 +52,13 @@ public abstract class BaseActivity extends FragmentActivity{
 			dialog.show();
 		}
 		/*
-		 * 隐藏运行Android 4.0以上系统的平板的屏幕下方的状态栏
+		 * 闅愯棌杩愯Android 4.0浠ヤ笂绯荤粺鐨勫钩鏉跨殑灞忓箷涓嬫柟鐨勭姸鎬佹爮
 		 */
 //		try  
 //	    {  
 //	        String ProcID = "79";  
 //	        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.ICE_CREAM_SANDWICH) ProcID = "42"; // ICS  
-//	        // 需要root 权限  
+//	        // 闇�瑕乺oot 鏉冮檺  
 //	        Process proc = Runtime.getRuntime().exec(new String[] { "su", "-c", "service call activity " + ProcID + " s16 com.android.systemui" }); // WAS  
 //	        proc.waitFor();  
 //	    }  
@@ -76,7 +76,7 @@ public abstract class BaseActivity extends FragmentActivity{
 	protected void onDestroy() {
 		((MyApplication)getApplication()).removeActivity(this);
 				/*
-				 * 恢复运行Android 4.0以上系统的平板的屏幕下方的状态栏
+				 * 鎭㈠杩愯Android 4.0浠ヤ笂绯荤粺鐨勫钩鏉跨殑灞忓箷涓嬫柟鐨勭姸鎬佹爮
 				 */
 //				try  
 //			    {  

@@ -84,7 +84,7 @@
         
     </LinearLayout>
 
-     <Button
+    <!--  <Button
          android:id="@+id/btn_fragment_logout"
          android:layout_width="100dp"
          android:layout_height="wrap_content"
@@ -93,6 +93,6 @@
          android:layout_marginTop="131dp"
          android:layout_toRightOf="@+id/ll_account2"
          android:gravity="center"
-         android:text="注销" />
+         android:text="注销" /> -->
 
 </RelativeLayout>

@@ -9,6 +9,11 @@ import android.widget.ImageView;
 import com.sinodata.evaluate.BaseActivity;
 import com.sinodata.evaluate.R;
 
+/**
+ * 
+ * @author 林杰
+ *
+ */
 public class InformationActivity extends BaseActivity implements OnClickListener {
 
 	private ImageView iv_information_constitution_types;

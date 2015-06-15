@@ -10,6 +10,11 @@ import android.widget.ImageView;
 import com.sinodata.evaluate.BaseActivity;
 import com.sinodata.evaluate.R;
 
+/**
+ * 此界面为体质辨识选择界面，根据新老用户跳转
+ * @author 林杰
+ *
+ */
 public class EvaluateChooseActivity extends BaseActivity implements OnClickListener {
 
 	private ImageView iv_new_user;

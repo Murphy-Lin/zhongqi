@@ -2,7 +2,6 @@ package com.sinodata.evaluate.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -17,6 +16,8 @@ public class MainActivity extends BaseActivity implements OnClickListener{
 	private ImageView iv_history;
 	private ImageView iv_information;
 	private ImageView iv_management;
+	
+	//private VersionManage vm;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +35,8 @@ public class MainActivity extends BaseActivity implements OnClickListener{
 		iv_history.setOnClickListener(this);
 		iv_information.setOnClickListener(this);
 		iv_management.setOnClickListener(this);
+		
+		//vm.checkUpdateInfo();
 	}
 				
 	public void initView() {
@@ -42,18 +45,7 @@ public class MainActivity extends BaseActivity implements OnClickListener{
 		iv_history = (ImageView) findViewById(R.id.iv_history);
 		iv_information = (ImageView) findViewById(R.id.iv_information);
 		iv_management = (ImageView) findViewById(R.id.iv_management);
-	}
-
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
-		int id = item.getItemId();
-		if (id == R.id.action_settings) {
-			return true;
-		}
-		return super.onOptionsItemSelected(item);
+		//vm = new VersionManage(this);
 	}
 
 	@Override
@@ -79,7 +71,5 @@ public class MainActivity extends BaseActivity implements OnClickListener{
 			break;
 			default:
 		}
-		
-			
 	}
 }

@@ -14,7 +14,7 @@ import android.widget.ImageView;
 import com.sinodata.evaluate.BaseActivity;
 import com.sinodata.evaluate.R;
 
-public class WebViewActivity extends BaseActivity {
+public class WebViewActivity2 extends BaseActivity {
 
 	private ImageView iv_back;
 	private String url;
@@ -27,7 +27,7 @@ public class WebViewActivity extends BaseActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_webview);
+		setContentView(R.layout.activity_webview2);
 		setProgressBarVisibility(true);
 		url = getIntent().getAction();
 		
@@ -37,8 +37,8 @@ public class WebViewActivity extends BaseActivity {
 	@Override
 	public void initView() {
 		// TODO Auto-generated method stub
-		iv_back = (ImageView) findViewById(R.id.iv_webview_back);
-		webView = (WebView) findViewById(R.id.webview);
+		iv_back = (ImageView) findViewById(R.id.iv_webview2_back);
+		webView = (WebView) findViewById(R.id.webview2);
 		
 	}
 	
@@ -55,7 +55,7 @@ public class WebViewActivity extends BaseActivity {
 		});
 		
 		   
-        progressBar = ProgressDialog.show(WebViewActivity.this, "正在加载页面，请耐心等待！", "Loading...");
+        progressBar = ProgressDialog.show(WebViewActivity2.this, "正在加载页面，请耐心等待！", "Loading...");
 		
 		webView.setWebChromeClient(new WebChromeClient(){
 			@Override

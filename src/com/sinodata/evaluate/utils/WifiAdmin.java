@@ -15,37 +15,37 @@ import com.sinodata.evaluate.utils.WifiConnect.WifiCipherType;
 
 /**
  * Class Name: WifiAdmin.java<br>
- * Function:WifiÁ¬½Ó¹ÜÀí¹¤¾ßÀà<br>
+ * Function:Wifiè¿æ¥ç®¡ç†å·¥å…·ç±»<br>
  * 
  * Modifications:<br>
  * 
- * @author Murphy_Lin DateTime 2014-5-14 ÏÂÎç2:24:14<br>
+ * @author Murphy_Lin DateTime 2014-5-14 ä¸‹åˆ2:24:14<br>
  * @version 1.0<br>
  * <br>
  */
 public class WifiAdmin {
-	// ¶¨ÒåÒ»¸öWifiManager¶ÔÏó
+	// å®šä¹‰ä¸€ä¸ªWifiManagerå¯¹è±¡
 	private WifiManager mWifiManager;
-	// ¶¨ÒåÒ»¸öWifiInfo¶ÔÏó
+	// å®šä¹‰ä¸€ä¸ªWifiInfoå¯¹è±¡
 	private WifiInfo mWifiInfo;
-	// É¨Ãè³öµÄÍøÂçÁ¬½ÓÁĞ±í
+	// æ‰«æå‡ºçš„ç½‘ç»œè¿æ¥åˆ—è¡¨
 	private List<ScanResult> mWifiList;
-	// ÍøÂçÁ¬½ÓÁĞ±í
+	// ç½‘ç»œè¿æ¥åˆ—è¡¨
 	private List<WifiConfiguration> mWifiConfigurations;
 	WifiLock mWifiLock;
 
 	public WifiAdmin(Context context) {
-		// È¡µÃWifiManager¶ÔÏó
+		// å–å¾—WifiManagerå¯¹è±¡
 		mWifiManager = (WifiManager) context
 				.getSystemService(Context.WIFI_SERVICE);
-		// È¡µÃWifiInfo¶ÔÏó
+		// å–å¾—WifiInfoå¯¹è±¡
 		mWifiInfo = mWifiManager.getConnectionInfo();
 	}
 
 	/**
-	 * Function:¹Ø±Õwifi<br>
+	 * Function:å…³é—­wifi<br>
 	 * 
-	 * @author Murphy_Lin DateTime 2014-5-15 ÉÏÎç12:17:37<br>
+	 * @author Murphy_Lin DateTime 2014-5-15 ä¸Šåˆ12:17:37<br>
 	 * @return<br>
 	 */
 	public boolean closeWifi() {
@@ -56,7 +56,7 @@ public class WifiAdmin {
 	}
 
 	/**
-	 * Gets the Wi-Fi enabled state.¼ì²éµ±Ç°wifi×´Ì¬
+	 * Gets the Wi-Fi enabled state.æ£€æŸ¥å½“å‰wifiçŠ¶æ€
 	 * 
 	 * @return One of {@link WifiManager#WIFI_STATE_DISABLED},
 	 *         {@link WifiManager#WIFI_STATE_DISABLING},
@@ -69,35 +69,35 @@ public class WifiAdmin {
 		return mWifiManager.getWifiState();
 	}
 
-	// Ëø¶¨wifiLock
+	// é”å®šwifiLock
 	public void acquireWifiLock() {
 		mWifiLock.acquire();
 	}
 
-	// ½âËøwifiLock
+	// è§£é”wifiLock
 	public void releaseWifiLock() {
-		// ÅĞ¶ÏÊÇ·ñËø¶¨
+		// åˆ¤æ–­æ˜¯å¦é”å®š
 		if (mWifiLock.isHeld()) {
 			mWifiLock.acquire();
 		}
 	}
 
-	// ´´½¨Ò»¸öwifiLock
+	// åˆ›å»ºä¸€ä¸ªwifiLock
 	public void createWifiLock() {
 		mWifiLock = mWifiManager.createWifiLock("test");
 	}
 
-	// µÃµ½ÅäÖÃºÃµÄÍøÂç
+	// å¾—åˆ°é…ç½®å¥½çš„ç½‘ç»œ
 	public List<WifiConfiguration> getConfiguration() {
 		return mWifiConfigurations;
 	}
 
-	// Ö¸¶¨ÅäÖÃºÃµÄÍøÂç½øĞĞÁ¬½Ó
+	// æŒ‡å®šé…ç½®å¥½çš„ç½‘ç»œè¿›è¡Œè¿æ¥
 	public void connetionConfiguration(int index) {
 		if (index > mWifiConfigurations.size()) {
 			return;
 		}
-		// Á¬½ÓÅäÖÃºÃÖ¸¶¨IDµÄÍøÂç
+		// è¿æ¥é…ç½®å¥½æŒ‡å®šIDçš„ç½‘ç»œ
 		mWifiManager.enableNetwork(mWifiConfigurations.get(index).networkId,
 				true);
 	}
@@ -107,25 +107,25 @@ public class WifiAdmin {
 		// openWifi();
 
 		mWifiManager.startScan();
-		// µÃµ½É¨Ãè½á¹û
+		// å¾—åˆ°æ‰«æç»“æœ
 		mWifiList = mWifiManager.getScanResults();
-		// µÃµ½ÅäÖÃºÃµÄÍøÂçÁ¬½Ó
+		// å¾—åˆ°é…ç½®å¥½çš„ç½‘ç»œè¿æ¥
 		mWifiConfigurations = mWifiManager.getConfiguredNetworks();
 
 	}
 
-	// µÃµ½ÍøÂçÁĞ±í
+	// å¾—åˆ°ç½‘ç»œåˆ—è¡¨
 	public List<ScanResult> getWifiList() {
 		return mWifiList;
 	}
 
-	// ²é¿´É¨Ãè½á¹û
+	// æŸ¥çœ‹æ‰«æç»“æœ
 	public StringBuffer lookUpScan() {
 		StringBuffer sb = new StringBuffer();
 		for (int i = 0; i < mWifiList.size(); i++) {
 			sb.append("Index_" + new Integer(i + 1).toString() + ":");
-			// ½«ScanResultĞÅÏ¢×ª»»³ÉÒ»¸ö×Ö·û´®°ü
-			// ÆäÖĞ°Ñ°üÀ¨£ºBSSID¡¢SSID¡¢capabilities¡¢frequency¡¢level
+			// å°†ScanResultä¿¡æ¯è½¬æ¢æˆä¸€ä¸ªå­—ç¬¦ä¸²åŒ…
+			// å…¶ä¸­æŠŠåŒ…æ‹¬ï¼šBSSIDã€SSIDã€capabilitiesã€frequencyã€level
 			sb.append((mWifiList.get(i)).toString()).append("\n");
 		}
 		return sb;
@@ -163,32 +163,32 @@ public class WifiAdmin {
 	}
 
 	/**
-	 * Function: µÃµ½wifiInfoµÄËùÓĞĞÅÏ¢<br>
+	 * Function: å¾—åˆ°wifiInfoçš„æ‰€æœ‰ä¿¡æ¯<br>
 	 * 
-	 * @author Murphy_Lin DateTime 2014-5-14 ÉÏÎç11:03:32<br>
+	 * @author Murphy_Lin DateTime 2014-5-14 ä¸Šåˆ11:03:32<br>
 	 * @return<br>
 	 */
 	public String getWifiInfo() {
 		return (mWifiInfo == null) ? "NULL" : mWifiInfo.toString();
 	}
 
-	// Ìí¼ÓÒ»¸öÍøÂç²¢Á¬½Ó
+	// æ·»åŠ ä¸€ä¸ªç½‘ç»œå¹¶è¿æ¥
 	public void addNetWork(WifiConfiguration configuration) {
 		int wcgId = mWifiManager.addNetwork(configuration);
 		mWifiManager.enableNetwork(wcgId, true);
 	}
 
-	// ¶Ï¿ªÖ¸¶¨IDµÄÍøÂç
+	// æ–­å¼€æŒ‡å®šIDçš„ç½‘ç»œ
 	public void disConnectionWifi(int netId) {
 		mWifiManager.disableNetwork(netId);
 		mWifiManager.disconnect();
 	}
 
 	/**
-	 * Function: ´ò¿ªwifi¹¦ÄÜ<br>
+	 * Function: æ‰“å¼€wifiåŠŸèƒ½<br>
 	 * 
-	 * @author Murphy_Lin DateTime 2014-5-14 ÉÏÎç11:01:11<br>
-	 * @return true:´ò¿ª³É¹¦£»false:´ò¿ªÊ§°Ü<br>
+	 * @author Murphy_Lin DateTime 2014-5-14 ä¸Šåˆ11:01:11<br>
+	 * @return true:æ‰“å¼€æˆåŠŸï¼›false:æ‰“å¼€å¤±è´¥<br>
 	 */
 	public boolean openWifi() {
 		boolean bRet = true;
@@ -199,35 +199,35 @@ public class WifiAdmin {
 	}
 
 	/**
-	 * Function: Ìá¹©Ò»¸öÍâ²¿½Ó¿Ú£¬´«ÈëÒªÁ¬½ÓµÄÎŞÏßÍø <br>
+	 * Function: æä¾›ä¸€ä¸ªå¤–éƒ¨æ¥å£ï¼Œä¼ å…¥è¦è¿æ¥çš„æ— çº¿ç½‘ <br>
 	 * 
-	 * @author Murphy_Lin DateTime 2014-5-13 ÏÂÎç11:46:54<br>
+	 * @author Murphy_Lin DateTime 2014-5-13 ä¸‹åˆ11:46:54<br>
 	 * @param SSID
 	 *            SSID
 	 * @param Password
 	 * @param Type
 	 * <br>
-	 *            Ã»ÃÜÂë£º{@linkplain WifiCipherType#WIFICIPHER_NOPASS}<br>
-	 *            WEP¼ÓÃÜ£º {@linkplain WifiCipherType#WIFICIPHER_WEP}<br>
-	 *            WPA¼ÓÃÜ£º {@linkplain WifiCipherType#WIFICIPHER_WPA}
-	 * @return true:Á¬½Ó³É¹¦£»false:Á¬½ÓÊ§°Ü<br>
+	 *            æ²¡å¯†ç ï¼š{@linkplain WifiCipherType#WIFICIPHER_NOPASS}<br>
+	 *            WEPåŠ å¯†ï¼š {@linkplain WifiCipherType#WIFICIPHER_WEP}<br>
+	 *            WPAåŠ å¯†ï¼š {@linkplain WifiCipherType#WIFICIPHER_WPA}
+	 * @return true:è¿æ¥æˆåŠŸï¼›false:è¿æ¥å¤±è´¥<br>
 	 */
 	public boolean connect(String SSID, String Password, WifiCipherType Type) {
 		if (!this.openWifi()) {
 			return false;
 		}
-		// ¿ªÆôwifi¹¦ÄÜĞèÒªÒ»¶ÎÊ±¼ä(ÎÒÔÚÊÖ»úÉÏ²âÊÔÒ»°ãĞèÒª1-3Ãë×óÓÒ)£¬ËùÒÔÒªµÈµ½wifi
-		// ×´Ì¬±ä³ÉWIFI_STATE_ENABLEDµÄÊ±ºò²ÅÄÜÖ´ĞĞÏÂÃæµÄÓï¾ä
+		// å¼€å¯wifiåŠŸèƒ½éœ€è¦ä¸€æ®µæ—¶é—´(æˆ‘åœ¨æ‰‹æœºä¸Šæµ‹è¯•ä¸€èˆ¬éœ€è¦1-3ç§’å·¦å³)ï¼Œæ‰€ä»¥è¦ç­‰åˆ°wifi
+		// çŠ¶æ€å˜æˆWIFI_STATE_ENABLEDçš„æ—¶å€™æ‰èƒ½æ‰§è¡Œä¸‹é¢çš„è¯­å¥
 		while (mWifiManager.getWifiState() == WifiManager.WIFI_STATE_ENABLING) {
 			try {
-				// ÎªÁË±ÜÃâ³ÌĞòÒ»Ö±whileÑ­»·£¬ÈÃËüË¯¸ö100ºÁÃëÔÚ¼ì²â¡­¡­
+				// ä¸ºäº†é¿å…ç¨‹åºä¸€ç›´whileå¾ªç¯ï¼Œè®©å®ƒç¡ä¸ª100æ¯«ç§’åœ¨æ£€æµ‹â€¦â€¦
 				Thread.currentThread();
 				Thread.sleep(100);
 			} catch (InterruptedException ie) {
 			}
 		}
 
-		System.out.println("WifiAdmin#connect==Á¬½Ó½áÊø");
+		System.out.println("WifiAdmin#connect==è¿æ¥ç»“æŸ");
 
 		WifiConfiguration wifiConfig = createWifiInfo(SSID, Password, Type);
 		//
@@ -245,17 +245,17 @@ public class WifiAdmin {
 
 		int netID = mWifiManager.addNetwork(wifiConfig);
 
-		// ¶Ï¿ªÁ¬½Ó
+		// æ–­å¼€è¿æ¥
 		mWifiManager.disconnect();
-		// ÖØĞÂÁ¬½Ó
+		// é‡æ–°è¿æ¥
 		// netID = wifiConfig.networkId;
-		// ÉèÖÃÎªtrue,Ê¹ÆäËûµÄÁ¬½Ó¶Ï¿ª
+		// è®¾ç½®ä¸ºtrue,ä½¿å…¶ä»–çš„è¿æ¥æ–­å¼€
 		boolean bRet = mWifiManager.enableNetwork(netID, true);
 		mWifiManager.reconnect();
 		return bRet;
 	}
 
-	// ²é¿´ÒÔÇ°ÊÇ·ñÒ²ÅäÖÃ¹ıÕâ¸öÍøÂç
+	// æŸ¥çœ‹ä»¥å‰æ˜¯å¦ä¹Ÿé…ç½®è¿‡è¿™ä¸ªç½‘ç»œ
 	private WifiConfiguration isExsits(String SSID) {
 		List<WifiConfiguration> existingConfigs = mWifiManager
 				.getConfiguredNetworks();
@@ -307,7 +307,7 @@ public class WifiAdmin {
 			// config.allowedProtocols.set(WifiConfiguration.Protocol.WPA);
 			// config.status = WifiConfiguration.Status.ENABLED;
 
-			// ĞŞ¸ÄÖ®ºóÅäÖÃ
+			// ä¿®æ”¹ä¹‹åé…ç½®
 			config.preSharedKey = "\"" + Password + "\"";
 			config.hiddenSSID = true;
 			config.allowedAuthAlgorithms
@@ -328,9 +328,9 @@ public class WifiAdmin {
 	}
 
 	/**
-	 * Function:ÅĞ¶ÏÉ¨Ãè½á¹ûÊÇ·ñÁ¬½ÓÉÏ<br>
+	 * Function:åˆ¤æ–­æ‰«æç»“æœæ˜¯å¦è¿æ¥ä¸Š<br>
 	 * 
-	 * @author Murphy_Lin DateTime 2014-5-14 ÉÏÎç11:31:40<br>
+	 * @author Murphy_Lin DateTime 2014-5-14 ä¸Šåˆ11:31:40<br>
 	 * @param result
 	 * @return<br>
 	 */
@@ -348,9 +348,9 @@ public class WifiAdmin {
 	}
 
 	/**
-	 * Function: ½«intÀàĞÍµÄIP×ª»»³É×Ö·û´®ĞÎÊ½µÄIP<br>
+	 * Function: å°†intç±»å‹çš„IPè½¬æ¢æˆå­—ç¬¦ä¸²å½¢å¼çš„IP<br>
 	 * 
-	 * @author Murphy_Lin DateTime 2014-5-14 ÏÂÎç12:28:16<br>
+	 * @author Murphy_Lin DateTime 2014-5-14 ä¸‹åˆ12:28:16<br>
 	 * @param ip
 	 * @return<br>
 	 */
@@ -374,27 +374,27 @@ public class WifiAdmin {
 	}
 
 	/**
-	 * Function:ĞÅºÅÇ¿¶È×ª»»Îª×Ö·û´®<br>
+	 * Function:ä¿¡å·å¼ºåº¦è½¬æ¢ä¸ºå­—ç¬¦ä¸²<br>
 	 * 
-	 * @author Murphy_Lin DateTime 2014-5-14 ÏÂÎç2:14:42<br>
+	 * @author Murphy_Lin DateTime 2014-5-14 ä¸‹åˆ2:14:42<br>
 	 * @param level
 	 * <br>
 	 */
 	public static String singlLevToStr(int level) {
 
-		String resuString = "ÎŞĞÅºÅ";
+		String resuString = "æ— ä¿¡å·";
 
 		if (Math.abs(level) > 100) {
 		} else if (Math.abs(level) > 80) {
-			resuString = "Èõ";
+			resuString = "å¼±";
 		} else if (Math.abs(level) > 70) {
-			resuString = "Ç¿";
+			resuString = "å¼º";
 		} else if (Math.abs(level) > 60) {
-			resuString = "Ç¿";
+			resuString = "å¼º";
 		} else if (Math.abs(level) > 50) {
-			resuString = "½ÏÇ¿";
+			resuString = "è¾ƒå¼º";
 		} else {
-			resuString = "¼«Ç¿";
+			resuString = "æå¼º";
 		}
 		return resuString;
 	}

@@ -4,14 +4,14 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
     
-    <include layout="@layout/activity_top"/>
+    <include layout="@layout/activity_top2"/>
     
      <WebView 
-       android:id="@+id/webview"
+       android:id="@+id/webview2"
        android:layout_width="match_parent"
        android:layout_height="0dp"
        android:layout_weight="1"/>
      
-     <include layout="@layout/activity_bottom"/>
+     <include layout="@layout/activity_bottom2"/>
      
 </LinearLayout>

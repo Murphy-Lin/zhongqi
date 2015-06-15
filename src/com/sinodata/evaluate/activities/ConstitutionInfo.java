@@ -9,6 +9,11 @@ import android.widget.ImageView;
 import com.sinodata.evaluate.BaseActivity;
 import com.sinodata.evaluate.R;
 
+/**
+ * 此界面为显示九种体质，点击可分别进入要查询的体质界面
+ * @author 林杰
+ *
+ */
 public class ConstitutionInfo extends BaseActivity implements OnClickListener{
 
 	private static final String typeAURL = "file:///android_asset/html/ATYPE.html";
@@ -56,7 +61,9 @@ public class ConstitutionInfo extends BaseActivity implements OnClickListener{
 		iv_type_i = (ImageView) findViewById(R.id.iv_type_i);
 		
 	}
-
+	/**
+	 * 注册界面响应的各种点击事件
+	 */
 	@Override
 	public void initEvent() {
 		// TODO Auto-generated method stub
@@ -76,6 +83,7 @@ public class ConstitutionInfo extends BaseActivity implements OnClickListener{
 	@Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
+		//根据控件ID进行跳转
 		switch(v.getId()){
 		case R.id.iv_type_a :
 			Intent intenta = new Intent(this,WebViewActivity.class);

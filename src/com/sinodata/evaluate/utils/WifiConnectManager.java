@@ -19,28 +19,28 @@ import com.sinodata.evaluate.MyApplication;
 
 public class WifiConnectManager {
 
-	// ¶¨ÒåÒ»¸öWifiManager¶ÔÏó
+	// å®šä¹‰ä¸€ä¸ªWifiManagerå¯¹è±¡
 	private WifiManager mWifiManager;
-	// ¶¨ÒåÒ»¸öWifiInfo¶ÔÏó
+	// å®šä¹‰ä¸€ä¸ªWifiInfoå¯¹è±¡
 	private WifiInfo mWifiInfo;
-	// É¨Ãè³öµÄÍøÂçÁ¬½ÓÁĞ±í
+	// æ‰«æå‡ºçš„ç½‘ç»œè¿æ¥åˆ—è¡¨
 	private List<ScanResult> mWifiList;
-	// ÍøÂçÁ¬½ÓÁĞ±í
+	// ç½‘ç»œè¿æ¥åˆ—è¡¨
 	private List<WifiConfiguration> mWifiConfigurations;
 	private WifiLock mWifiLock;
 	private DialogShow dialogShow;
 	private List<String> wifiList = new ArrayList<String>();
 	// private TextView allNetWork;
-	// É¨Ãè½á¹ûÁĞ±í
+	// æ‰«æç»“æœåˆ—è¡¨
 	private ScanResult mScanResult;
 
 	// private StringBuffer sb = new StringBuffer();
 
 	public WifiConnectManager(Context context) {
-		// È¡µÃWifiManager¶ÔÏó
+		// å–å¾—WifiManagerå¯¹è±¡
 		mWifiManager = (WifiManager) context
 				.getSystemService(Context.WIFI_SERVICE);
-		// È¡µÃWifiInfo¶ÔÏó
+		// å–å¾—WifiInfoå¯¹è±¡
 		mWifiInfo = mWifiManager.getConnectionInfo();
 	}
 
@@ -62,88 +62,88 @@ public class WifiConnectManager {
 	public void isConnect() {
 		if (checkState() == 0) {
 			Log.i("wifistate", String.valueOf(checkState()));
-			Toast.makeText(MyApplication.getContext(), "wifiÎ´¿ªÆô£¡", Toast.LENGTH_LONG).show();
+			Toast.makeText(MyApplication.getContext(), "wifiæœªå¼€å¯ï¼", Toast.LENGTH_LONG).show();
 			openWifi();
 			new AlertDialog.Builder(
 					MyApplication.getContext())
-					.setMessage("µ±Ç°ÍøÂçÎ´Á¬½Ó£¬ÇëÏÈÁ¬½ÓWIFI£¡")
-					.setNegativeButton("ËÑË÷¸½½üWIFI", dialogShow).show();
+					.setMessage("å½“å‰ç½‘ç»œæœªè¿æ¥ï¼Œè¯·å…ˆè¿æ¥WIFIï¼")
+					.setNegativeButton("æœç´¢é™„è¿‘WIFI", dialogShow).show();
 		}
 	}
 
-	// ´ò¿ªwifi
+	// æ‰“å¼€wifi
 	public void openWifi() {
 		if (!mWifiManager.isWifiEnabled()) {
 			mWifiManager.setWifiEnabled(true);
 		}
 	}
 
-	// ¹Ø±Õwifi
+	// å…³é—­wifi
 	public void closeWifi() {
 		if (mWifiManager.isWifiEnabled()) {
 			mWifiManager.setWifiEnabled(false);
 		}
 	}
 
-	// ¼ì²éµ±Ç°wifi×´Ì¬
+	// æ£€æŸ¥å½“å‰wifiçŠ¶æ€
 	public int checkState() {
 		return mWifiManager.getWifiState();
 	}
 
-	// Ëø¶¨wifiLock
+	// é”å®šwifiLock
 	public void acquireWifiLock() {
 		mWifiLock.acquire();
 	}
 
-	// ½âËøwifiLock
+	// è§£é”wifiLock
 	public void releaseWifiLock() {
-		// ÅĞ¶ÏÊÇ·ñËø¶¨
+		// åˆ¤æ–­æ˜¯å¦é”å®š
 		if (mWifiLock.isHeld()) {
 			mWifiLock.acquire();
 		}
 	}
 
-	// ´´½¨Ò»¸öwifiLock
+	// åˆ›å»ºä¸€ä¸ªwifiLock
 	public void createWifiLock() {
 		mWifiLock = mWifiManager.createWifiLock("test");
 	}
 
-	// µÃµ½ÅäÖÃºÃµÄÍøÂç
+	// å¾—åˆ°é…ç½®å¥½çš„ç½‘ç»œ
 	public List<WifiConfiguration> getConfiguration() {
 		return mWifiConfigurations;
 	}
 
-	// Ö¸¶¨ÅäÖÃºÃµÄÍøÂç½øĞĞÁ¬½Ó
+	// æŒ‡å®šé…ç½®å¥½çš„ç½‘ç»œè¿›è¡Œè¿æ¥
 	public void connetionConfiguration(int index) {
 		if (index > mWifiConfigurations.size()) {
 			return;
 		}
-		// Á¬½ÓÅäÖÃºÃÖ¸¶¨IDµÄÍøÂç
+		// è¿æ¥é…ç½®å¥½æŒ‡å®šIDçš„ç½‘ç»œ
 		mWifiManager.enableNetwork(mWifiConfigurations.get(index).networkId,
 				true);
 	}
 
 	public void startScan() {
 		mWifiManager.startScan();
-		// µÃµ½É¨Ãè½á¹û
+		// å¾—åˆ°æ‰«æç»“æœ
 		mWifiList = mWifiManager.getScanResults();
-		// µÃµ½ÅäÖÃºÃµÄÍøÂçÁ¬½Ó
+		// å¾—åˆ°é…ç½®å¥½çš„ç½‘ç»œè¿æ¥
 		mWifiConfigurations = mWifiManager.getConfiguredNetworks();
 	}
 
-	// µÃµ½ÍøÂçÁĞ±í
+	// å¾—åˆ°ç½‘ç»œåˆ—è¡¨
 	public List<ScanResult> getWifiList() {
 		return mWifiList;
 	}
 
-	// ²é¿´É¨Ãè½á¹û
+	// æŸ¥çœ‹æ‰«æç»“æœ
 	@SuppressLint("UseValueOf")
 	public StringBuffer lookUpScan() {
 		StringBuffer sb = new StringBuffer();
 		for (int i = 0; i < mWifiList.size(); i++) {
 			sb.append("Index_" + new Integer(i + 1).toString() + ":");
-			// ½«ScanResultĞÅÏ¢×ª»»³ÉÒ»¸ö×Ö·û´®°ü
-			// ÆäÖĞ°Ñ°üÀ¨£ºBSSID¡¢SSID¡¢capabilities¡¢frequency¡¢level
+			// å°†ScanResultä¿¡æ¯è½¬æ¢æˆä¸€ä¸ªå­—ç¬¦ä¸²åŒ…
+			// å…¶ä¸­æŠŠåŒ…æ‹¬ï¼šBSSIDã€SSIDã€capabilitiesã€frequencyã€level
 			sb.append((mWifiList.get(i)).toString()).append("\n");
 		}
 		return sb;
@@ -161,39 +161,39 @@ public class WifiConnectManager {
 		return (mWifiInfo == null) ? 0 : mWifiInfo.getIpAddress();
 	}
 
-	// µÃµ½Á¬½ÓµÄID
+	// å¾—åˆ°è¿æ¥çš„ID
 	public int getNetWordId() {
 		return (mWifiInfo == null) ? 0 : mWifiInfo.getNetworkId();
 	}
 
-	// µÃµ½wifiInfoµÄËùÓĞĞÅÏ¢
+	// å¾—åˆ°wifiInfoçš„æ‰€æœ‰ä¿¡æ¯
 	public String getWifiInfo() {
 		return (mWifiInfo == null) ? "NULL" : mWifiInfo.toString();
 	}
 
-	// Ìí¼ÓÒ»¸öÍøÂç²¢Á¬½Ó
+	// æ·»åŠ ä¸€ä¸ªç½‘ç»œå¹¶è¿æ¥
 	public void addNetWork(WifiConfiguration configuration) {
 		int wcgId = mWifiManager.addNetwork(configuration);
 		mWifiManager.enableNetwork(wcgId, true);
 	}
 
-	// ¶Ï¿ªÖ¸¶¨IDµÄÍøÂç
+	// æ–­å¼€æŒ‡å®šIDçš„ç½‘ç»œ
 	public void disConnectionWifi(int netId) {
 		mWifiManager.disableNetwork(netId);
 		mWifiManager.disconnect();
 	}
 
 	public List<String> getAllNetWorkList() {
-		// Ã¿´Îµã»÷É¨ÃèÖ®Ç°Çå¿ÕÉÏÒ»´ÎµÄÉ¨Ãè½á¹û
+		// æ¯æ¬¡ç‚¹å‡»æ‰«æä¹‹å‰æ¸…ç©ºä¸Šä¸€æ¬¡çš„æ‰«æç»“æœ
 		if (wifiList != null) {
 			wifiList.removeAll(wifiList);
 		}
-		// ¿ªÊ¼É¨ÃèÍøÂç
+		// å¼€å§‹æ‰«æç½‘ç»œ
 		startScan();
 		mWifiList = getWifiList();
 		if (mWifiList != null) {
 			for (int i = 0; i < mWifiList.size(); i++) {
-				// µÃµ½É¨Ãè½á¹û
+				// å¾—åˆ°æ‰«æç»“æœ
 				mScanResult = mWifiList.get(i);
 				wifiList.add(mScanResult.SSID);
 				// sb = sb.append(mScanResult.BSSID + "  ")
@@ -202,7 +202,7 @@ public class WifiConnectManager {
 				// .append(mScanResult.frequency + "   ")
 				// .append(mScanResult.level + "\n\n");
 			}
-			// allNetWork.setText("É¨Ãèµ½µÄwifiÍøÂç£º\n" + sb.toString());
+			// allNetWork.setText("æ‰«æåˆ°çš„wifiç½‘ç»œï¼š\n" + sb.toString());
 		}
 		return wifiList;
 	}

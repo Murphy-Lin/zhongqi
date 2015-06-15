@@ -11,17 +11,17 @@ public class WifiConnect {
 
 	WifiManager mWifiManager;
 
-	// ¶¨Òå¼¸ÖÖ¼ÓÃÜ·½Ê½£¬Ò»ÖÖÊÇWEP£¬Ò»ÖÖÊÇWPA£¬»¹ÓĞÃ»ÓĞÃÜÂëµÄÇé¿ö
+	// å®šä¹‰å‡ ç§åŠ å¯†æ–¹å¼ï¼Œä¸€ç§æ˜¯WEPï¼Œä¸€ç§æ˜¯WPAï¼Œè¿˜æœ‰æ²¡æœ‰å¯†ç çš„æƒ…å†µ
 	public enum WifiCipherType {
 		WIFICIPHER_WEP, WIFICIPHER_WPA, WIFICIPHER_NOPASS, WIFICIPHER_INVALID
 	}
 
-	// ¹¹Ôìº¯Êı
+	// æ„é€ å‡½æ•°
 	public WifiConnect(WifiManager wifiManager) {
 		this.mWifiManager = wifiManager;
 	}
 
-	// ´ò¿ªwifi¹¦ÄÜ
+	// æ‰“å¼€wifiåŠŸèƒ½
 	private boolean openWifi() {
 		boolean bRet = true;
 		if (!mWifiManager.isWifiEnabled()) {
@@ -31,9 +31,9 @@ public class WifiConnect {
 	}
 
 	/**
-	 * Function: Ìá¹©Ò»¸öÍâ²¿½Ó¿Ú£¬´«ÈëÒªÁ¬½ÓµÄÎŞÏßÍø <br>
+	 * Function: æä¾›ä¸€ä¸ªå¤–éƒ¨æ¥å£ï¼Œä¼ å…¥è¦è¿æ¥çš„æ— çº¿ç½‘ <br>
 	 * 
-	 * @author Murphy_Lin DateTime 2014-5-13 ÏÂÎç11:46:54<br>
+	 * @author Murphy_Lin DateTime 2014-5-13 ä¸‹åˆ11:46:54<br>
 	 * @param SSID
 	 * @param Password
 	 * @param Type
@@ -43,11 +43,11 @@ public class WifiConnect {
 		if (!this.openWifi()) {
 			return false;
 		}
-		// ¿ªÆôwifi¹¦ÄÜĞèÒªÒ»¶ÎÊ±¼ä(ÎÒÔÚÊÖ»úÉÏ²âÊÔÒ»°ãĞèÒª1-3Ãë×óÓÒ)£¬ËùÒÔÒªµÈµ½wifi
-		// ×´Ì¬±ä³ÉWIFI_STATE_ENABLEDµÄÊ±ºò²ÅÄÜÖ´ĞĞÏÂÃæµÄÓï¾ä
+		// å¼€å¯wifiåŠŸèƒ½éœ€è¦ä¸€æ®µæ—¶é—´(æˆ‘åœ¨æ‰‹æœºä¸Šæµ‹è¯•ä¸€èˆ¬éœ€è¦1-3ç§’å·¦å³)ï¼Œæ‰€ä»¥è¦ç­‰åˆ°wifi
+		// çŠ¶æ€å˜æˆWIFI_STATE_ENABLEDçš„æ—¶å€™æ‰èƒ½æ‰§è¡Œä¸‹é¢çš„è¯­å¥
 		while (mWifiManager.getWifiState() == WifiManager.WIFI_STATE_ENABLING) {
 			try {
-				// ÎªÁË±ÜÃâ³ÌĞòÒ»Ö±whileÑ­»·£¬ÈÃËüË¯¸ö100ºÁÃëÔÚ¼ì²â¡­¡­
+				// ä¸ºäº†é¿å…ç¨‹åºä¸€ç›´whileå¾ªç¯ï¼Œè®©å®ƒç¡ä¸ª100æ¯«ç§’åœ¨æ£€æµ‹â€¦â€¦
 				Thread.currentThread();
 				Thread.sleep(100);
 			} catch (InterruptedException ie) {
@@ -72,7 +72,7 @@ public class WifiConnect {
 		return bRet;
 	}
 
-	// ²é¿´ÒÔÇ°ÊÇ·ñÒ²ÅäÖÃ¹ıÕâ¸öÍøÂç
+	// æŸ¥çœ‹ä»¥å‰æ˜¯å¦ä¹Ÿé…ç½®è¿‡è¿™ä¸ªç½‘ç»œ
 	private WifiConfiguration isExsits(String SSID) {
 		List<WifiConfiguration> existingConfigs = mWifiManager
 				.getConfiguredNetworks();
@@ -135,7 +135,7 @@ public class WifiConnect {
 	       final android.net.NetworkInfo wifi =connMgr.getNetworkInfo(ConnectivityManager.TYPE_WIFI);   
 	       final android.net.NetworkInfo mobile =connMgr.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);   
 	  
-	       if(wifi.isAvailable()||mobile.isAvailable())   
+	       if(wifi.isAvailable())   
 	           return true;   
 	       else  
 	           return false;   

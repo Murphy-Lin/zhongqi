@@ -17,17 +17,17 @@ import com.sinodata.evaluate.utils.WifiAdmin;
 
 /**
  * Class Name: WifiStatusDialog.java<br>
- * Function:ÍøÂç×´Ì¬<br>
+ * Function:ç½‘ç»œçŠ¶æ€<br>
  * 
  * Modifications:<br>
  * 
- * @author Murphy_Lin DateTime 2014-5-14 ÉÏÎç11:41:55<br>
+ * @author Murphy_Lin DateTime 2014-5-14 ä¸Šåˆ11:41:55<br>
  * @version 1.0<br>
  * <br>
  */
 public class WifiStatusDialog extends Dialog {
 
-	// Wifi¹ÜÀíÀà
+	// Wifiç®¡ç†ç±»
 	private WifiAdmin mWifiAdmin;
 
 	private Context context;
@@ -95,7 +95,7 @@ public class WifiStatusDialog extends Dialog {
 
 			@Override
 			public void onClick(View v) {
-				// ¶Ï¿ªÁ¬½Ó
+				// æ–­å¼€è¿æ¥
 				int netId = mWifiAdmin.getConnNetId();
 				mWifiAdmin.disConnectionWifi(netId);
 				WifiStatusDialog.this.dismiss();
@@ -115,7 +115,7 @@ public class WifiStatusDialog extends Dialog {
 		txtBtnDisConn = (TextView) findViewById(R.id.txt_btn_disconnect);
 
 		txtWifiName.setText(wifiName);
-		txtConnStatus.setText("ÒÑÁ¬½Ó");
+		txtConnStatus.setText("å·²è¿æ¥");
 		txtSinglStrength.setText(WifiAdmin.singlLevToStr(level));
 		txtSecurityLevel.setText(securigyLevel);
 		txtIpAddress

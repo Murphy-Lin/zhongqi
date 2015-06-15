@@ -53,28 +53,28 @@ public class ManagementActivity extends BaseActivity {
 				finish();
 			}
 		});
-		 //Éú³É¶¯Ì¬Êı×é£¬²¢ÇÒ×ªÈëÊı¾İ  
+		 //ç”ŸæˆåŠ¨æ€æ•°ç»„ï¼Œå¹¶ä¸”è½¬å…¥æ•°æ®  
 	      ArrayList<HashMap<String, Object>> lstImageItem = new ArrayList<HashMap<String, Object>>();  
-	      String[] str = {"ËÑË÷¸½½üWIFI","Ò»¼ü¹Ø»ú","ÓÃ»§×¢Ïú","ÓÃ»§ĞÅÏ¢²éÑ¯"};
+	      String[] str = {"æœç´¢é™„è¿‘WIFI","ä¸€é”®å…³æœº","ç”¨æˆ·æ³¨é”€","ç”¨æˆ·ä¿¡æ¯æŸ¥è¯¢"};
 	      for (String string : str) {
 	    	  HashMap<String, Object> map = new HashMap<String, Object>();  
-		      map.put("ItemImage", R.drawable.ic_launcher);//Ìí¼ÓÍ¼Ïñ×ÊÔ´µÄID  
-		      map.put("ItemText", string);//°´ĞòºÅ×öItemText  
+		      map.put("ItemImage", R.drawable.ic_launcher);//æ·»åŠ å›¾åƒèµ„æºçš„ID  
+		      map.put("ItemText", string);//æŒ‰åºå·åšItemText  
 		      lstImageItem.add(map);  
 		}
-	      //Éú³ÉÊÊÅäÆ÷µÄImageItem <====> ¶¯Ì¬Êı×éµÄÔªËØ£¬Á½ÕßÒ»Ò»¶ÔÓ¦  
-		SimpleAdapter saImageItems = new SimpleAdapter(this, // Ã»Ê²Ã´½âÊÍ
-				lstImageItem,// Êı¾İÀ´Ô´
-				R.layout.management_item,// night_itemµÄXMLÊµÏÖ
+	      //ç”Ÿæˆé€‚é…å™¨çš„ImageItem <====> åŠ¨æ€æ•°ç»„çš„å…ƒç´ ï¼Œä¸¤è€…ä¸€ä¸€å¯¹åº”  
+		SimpleAdapter saImageItems = new SimpleAdapter(this, // æ²¡ä»€ä¹ˆè§£é‡Š
+				lstImageItem,// æ•°æ®æ¥æº
+				R.layout.management_item,// night_itemçš„XMLå®ç°
 
-				// ¶¯Ì¬Êı×éÓëImageItem¶ÔÓ¦µÄ×ÓÏî
+				// åŠ¨æ€æ•°ç»„ä¸ImageItemå¯¹åº”çš„å­é¡¹
 				new String[] { "ItemImage", "ItemText" },
 
-				// ImageItemµÄXMLÎÄ¼şÀïÃæµÄÒ»¸öImageView,Á½¸öTextView ID
+				// ImageItemçš„XMLæ–‡ä»¶é‡Œé¢çš„ä¸€ä¸ªImageView,ä¸¤ä¸ªTextView ID
 				new int[] { R.id.ItemImage, R.id.ItemText });
-	      //Ìí¼Ó²¢ÇÒÏÔÊ¾  
+	      //æ·»åŠ å¹¶ä¸”æ˜¾ç¤º  
 	      gridView.setAdapter(saImageItems);  
-	      //Ìí¼ÓÏûÏ¢´¦Àí  
+	      //æ·»åŠ æ¶ˆæ¯å¤„ç†  
 	      gridView.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
@@ -83,16 +83,16 @@ public class ManagementActivity extends BaseActivity {
 				// TODO Auto-generated method stub
 				@SuppressWarnings("unchecked")
 				HashMap<String, Object> item = (HashMap<String, Object>) parent.getItemAtPosition(position);
-				// ÏÔÊ¾ËùÑ¡ItemµÄItemText
+				// æ˜¾ç¤ºæ‰€é€‰Itemçš„ItemText
 				//setTitle((String) item.get("ItemText"));
 				switch((String)item.get("ItemText")){
-				case "ËÑË÷¸½½üWIFI":
+				case "æœç´¢é™„è¿‘WIFI":
 					startActivity(new Intent(ManagementActivity.this, WifiListActivity.class));
 					overridePendingTransition(android.R.anim.slide_in_left,
 							android.R.anim.slide_out_right);
 					break;
-				case "Ò»¼ü¹Ø»ú":
-					new AlertDialog.Builder(ManagementActivity.this).setTitle("ÄúÈ·ÈÏÊÇ·ñ¹Ø»úÃ´£¿").setPositiveButton("¹Ø»ú", new DialogInterface.OnClickListener() {
+				case "ä¸€é”®å…³æœº":
+					new AlertDialog.Builder(ManagementActivity.this).setTitle("æ‚¨ç¡®è®¤æ˜¯å¦å…³æœºä¹ˆï¼Ÿ").setPositiveButton("å…³æœº", new DialogInterface.OnClickListener() {
 				
 						@Override
 						public void onClick(DialogInterface dialog, int which) {
@@ -101,13 +101,13 @@ public class ManagementActivity extends BaseActivity {
 							try {
 								proc = Runtime.getRuntime().exec(new String[]{"su","-c","reboot -p"});
 								proc.waitFor();
-								Toast.makeText(ManagementActivity.this, "×Ô¶¯¹Ø»ú", Toast.LENGTH_SHORT).show();
+								Toast.makeText(ManagementActivity.this, "è‡ªåŠ¨å…³æœº", Toast.LENGTH_SHORT).show();
 							} catch (Exception e) {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
 							}  
 						}
-					}).setNegativeButton("²»¹Ø»ú", new DialogInterface.OnClickListener() {
+					}).setNegativeButton("ä¸å…³æœº", new DialogInterface.OnClickListener() {
 						
 						@Override
 						public void onClick(DialogInterface dialog, int which) {
@@ -117,11 +117,11 @@ public class ManagementActivity extends BaseActivity {
 					}).show();
 				
 					break;
-				case "ÓÃ»§×¢Ïú":
-					lm.saveLicense("","","","");
+				case "ç”¨æˆ·æ³¨é”€":
+					lm.saveLicense("","","");
 					MyApplication.exit();
 					break;
-				case "ÓÃ»§ĞÅÏ¢²éÑ¯":
+				case "ç”¨æˆ·ä¿¡æ¯æŸ¥è¯¢":
 					break;
 					default:
 				}

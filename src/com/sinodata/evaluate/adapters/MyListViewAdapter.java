@@ -22,7 +22,7 @@ public class MyListViewAdapter extends BaseAdapter {
 
 	private List<ScanResult> datas;
 	private Context context;
-	// È¡µÃWifiManager¶ÔÏó
+	// å–å¾—WifiManagerå¯¹è±¡
 	private WifiManager mWifiManager;
 	private WifiInfo connInfo;
 	private List<String> list;
@@ -87,11 +87,11 @@ public class MyListViewAdapter extends BaseAdapter {
 			convertView.setTag(tag);
 		}
 
-		// ÉèÖÃÊı¾İ
+		// è®¾ç½®æ•°æ®
 		Holder holder = (Holder) convertView.getTag();
-		// Wifi Ãû×Ö
+		// Wifi åå­—
 		holder.txtWifiName.setText(datas.get(position).SSID);
-		// Wifi ÃèÊö
+		// Wifi æè¿°
 		String desc = "";
 		String descOri = datas.get(position).capabilities;
 		if (descOri.toUpperCase().contains("WPA-PSK")) {
@@ -106,23 +106,23 @@ public class MyListViewAdapter extends BaseAdapter {
 		}
 
 		if (TextUtils.isEmpty(desc)) {
-			desc = "Î´ÊÜ±£»¤µÄÍøÂç";
+			desc = "æœªå—ä¿æŠ¤çš„ç½‘ç»œ";
 		} else {
-			desc = "Í¨¹ı " + desc + " ½øĞĞ±£»¤";
+			desc = "é€šè¿‡ " + desc + " è¿›è¡Œä¿æŠ¤";
 		}
 
-		// ÊÇ·ñÁ¬½Ó£¬Èç¹û¸Õ¸Õ¶Ï¿ªÁ¬½Ó£¬connInfo.SSID==null
+		// æ˜¯å¦è¿æ¥ï¼Œå¦‚æœåˆšåˆšæ–­å¼€è¿æ¥ï¼ŒconnInfo.SSID==null
 		connInfo = mWifiManager.getConnectionInfo();
 		if (connInfo != null && !TextUtils.isEmpty(connInfo.getSSID())
 				&& !TextUtils.isEmpty(datas.get(position).SSID)
 				&& connInfo.getSSID().equals(datas.get(position).SSID)) {
 			System.out.println("getView() ==== " + position);
-			desc = "ÒÑÁ¬½Ó";
+			desc = "å·²è¿æ¥";
 		}
 
 		holder.txtWifiDesc.setText(desc);
 
-		// ÍøÂçĞÅºÅÇ¿¶È
+		// ç½‘ç»œä¿¡å·å¼ºåº¦
 		int level = datas.get(position).level;
 		int imgId = R.drawable.wifi05;
 		if (Math.abs(level) > 100) {

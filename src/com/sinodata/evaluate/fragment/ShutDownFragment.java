@@ -12,7 +12,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.sinodata.evaluate.MyApplication;
 import com.sinodata.evaluate.R;
 
 public class ShutDownFragment extends Fragment {
@@ -30,22 +29,23 @@ public class ShutDownFragment extends Fragment {
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
-				new AlertDialog.Builder(MyApplication.getContext()).setTitle("ÄúÈ·ÈÏÊÇ·ñ¹Ø»úÃ´£¿").setPositiveButton("¹Ø»ú", new DialogInterface.OnClickListener() {
+				new AlertDialog.Builder(getActivity()).setTitle("æ‚¨ç¡®è®¤æ˜¯å¦å…³æœºä¹ˆï¼Ÿ").setPositiveButton("å…³æœº", new DialogInterface.OnClickListener() {
 					
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
 						// TODO Auto-generated method stub
+						
 						Process proc;
 						try {
 							proc = Runtime.getRuntime().exec(new String[]{"su","-c","reboot -p"});
 							proc.waitFor();
-							Toast.makeText(MyApplication.getContext(), "×Ô¶¯¹Ø»ú", Toast.LENGTH_SHORT).show();
+							Toast.makeText(getActivity(), "è‡ªåŠ¨å…³æœº", Toast.LENGTH_SHORT).show();
 						} catch (Exception e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}  
 					}
-				}).setNegativeButton("²»¹Ø»ú", new DialogInterface.OnClickListener() {
+				}).setNegativeButton("ä¸å…³æœº", new DialogInterface.OnClickListener() {
 					
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
